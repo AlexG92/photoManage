@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+Welcome {{ user.username }} | <a href="/photos/">Home</a> | <a href="../accounts/logout/">Log Out</a><br><br>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<b>Create Photos:</b>
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" multiple name="file">
+    <input type="submit" name="uploadFile">
+</form>
+
+<br><br>
+
+<b>Album Photos:</b>
+<br><br>
+<form action="" method="post">
+    {% csrf_token %}
+{% for photo in albumPhotos %}
+    {{ photo.title }} <br>
+    <img src="{{ MEDIA_URL }}{{ photo.photo }}"><br>
+    <button type="submit" value="{{ photo.id }}" name="delete">Delete</button>
+{% endfor %}
+</form>
+
+<br><br>
+
+<b>Photos:</b>
+<br><br>
+<form action="" method="post">
+    {% csrf_token %}
+{% for photo in photos %}
+    {{ photo.title }} <br>
+    <img src="{{ MEDIA_URL }}{{ photo.photo }}"><br>
+    <button type="submit" value="{{ photo.id }}" name="delete">Delete</button>
+    <button type="submit" value="{{ photo.id }}" name="addAlbum">Add to Album</button>
+    <br><br>
+{% endfor %}
+</form>
+
+
+</body>
+</html>

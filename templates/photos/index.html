@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+Welcome {{ user.username }} | <a href="../accounts/logout/">Log Out</a><br><br>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+Upload Files:
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" multiple name="file">
+    <input type="submit" name="uploadFile">
+</form>
+
+<br><br>
+
+Create Album:
+<form method="post" action="">
+    {% csrf_token %}
+    <input type="text" name="title">
+    <input type="submit" name="uploadAlbum">
+</form>
+
+<br><br>
+
+Albums:
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="deleteAlbum">
+    {% for album in albums %}
+
+            {% if album.lastImage %}
+                <img src="{{ MEDIA_URL }}{{ album.lastImage.photo }}"><br>
+            {% endif %}
+
+        <a href="album/{{ album.id }}">{{ album.title }} </a>
+        <button type="submit" value="{{ album.id }}" name="delete">Delete</button><br>
+    {% endfor %}
+</form>
+
+<br><br>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="deletePhoto">
+    {% for photo in photos %}
+        {{ photo.title }} <br>
+        <img src="{{ MEDIA_URL }}{{ photo.photo }}"><br>
+        {{ photo.photo.path }}
+        <button type="submit" value="{{ photo.id }}" name="delete">Delete</button>
+        <br><br>
+    {% endfor %}
+</form>
+
+
+
+
+</body>
+</html>
