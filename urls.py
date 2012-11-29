@@ -12,7 +12,6 @@ urlpatterns = patterns('',
    # url(r'^$', 'views.index'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^photos/', include('photos.urls')),
-    url(r'^polls/', include('polls.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

@@ -118,7 +118,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'polls',
     'accounts',
     'photos',
     # Uncomment the next line to enable the admin:
