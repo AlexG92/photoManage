@@ -1,7 +1,7 @@
 # Custom
 media/photographs/
 media/photographs/*
-
+maindb.db
 .idea/
 .idea/*
 *.idea
