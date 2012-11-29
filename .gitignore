@@ -2,6 +2,7 @@
 media/photographs/
 .idea/
 .idea/*
+*.idea
 
 #################
 ## Eclipse
