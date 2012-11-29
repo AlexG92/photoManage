@@ -1,8 +1,6 @@
 # Custom
 media/photographs/
-*media/photographs/
 media/photographs/*
-*media/photographs/*
 
 .idea/
 .idea/*
