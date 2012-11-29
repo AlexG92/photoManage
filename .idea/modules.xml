@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rally.iml" filepath="$PROJECT_DIR$/.idea/rally.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../django_tutorial/.idea/django_tutorial.iml" filepath="$PROJECT_DIR$/../django_tutorial/.idea/django_tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/photoManage.iml" filepath="$PROJECT_DIR$/.idea/photoManage.iml" />
     </modules>
   </component>
 </project>
