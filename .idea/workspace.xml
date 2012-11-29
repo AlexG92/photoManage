@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52feb7a8-c5c8-45d0-b94e-8eddbff51f6f" name="Default" comment="">
-      <change type="DELETED" beforePath="G:\_work\photoManage\.idea\dictionaries\Alex_IBuyPower.xml" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\.idea\rally.iml" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\models.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\urls.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\polls\views.py" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\templates\polls\detail.html" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\templates\polls\index.html" afterPath="" />
-      <change type="DELETED" beforePath="G:\_work\photoManage\templates\polls\results.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maindb.db" afterPath="$PROJECT_DIR$/maindb.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.py" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
+      <change type="DELETED" beforePath="G:\_work\photoManage\photos\migrations\0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="G:\_work\photoManage\photos\migrations\__init__.py" afterPath="" />
     </list>
     <ignored path="photoManage.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,19 +37,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../django_tutorial/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="528" selection-end="528" vertical-scroll-proportion="0.29162464">
+            <state line="17" column="0" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="45" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0">
+            <state line="13" column="45" selection-start="462" selection-end="462" vertical-scroll-proportion="0.22300707">
               <folding />
             </state>
           </provider>
@@ -281,7 +262,7 @@
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
-      <module name="django_tutorial" />
+      <module name="photoManage" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -359,13 +340,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297244" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.3277559" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.6653543" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.6653543" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -447,16 +428,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
+    <entry file="file://$PROJECT_DIR$/../django_tutorial/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="45" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0">
+        <state line="17" column="0" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../django_tutorial/urls.py">
+    <entry file="file://$PROJECT_DIR$/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="528" selection-end="528" vertical-scroll-proportion="0.29162464">
+        <state line="13" column="45" selection-start="462" selection-end="462" vertical-scroll-proportion="0.22300707">
           <folding />
         </state>
       </provider>
