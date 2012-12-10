@@ -16,6 +16,8 @@ from photos.models import *
 ##TODO NICE FRONT END
 ##TODO DRAG AND DROP
 ##TODO RESTFUL API
+##TODO EDIT PICTURE NAME
+##TODO EDIT ALBUM NAME
 ##TODO ONLY OWNER CAN DELETE *******DONE********
 @login_required
 def index(request):
