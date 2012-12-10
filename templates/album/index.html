@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %} Album Page {% endblock %}
+
+{% block main_content %}
+<br><br><br><br>
 
 Welcome {{ user.username }} | <a href="/photos/">Home</a> | <a href="../accounts/logout/">Log Out</a><br><br>
 
@@ -44,6 +44,4 @@ Welcome {{ user.username }} | <a href="/photos/">Home</a> | <a href="../accounts
 {% endfor %}
 </form>
 
-
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block title %} Photo Management Page {% endblock %}
+
+{% block main_content %}
+
+<br><br><br><br>
 Welcome {{ user.username }} | <a href="../accounts/logout/">Log Out</a><br><br>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -56,8 +56,4 @@ Albums:
     {% endfor %}
 </form>
 
-
-
-
-</body>
-</html>
+{% endblock %}
