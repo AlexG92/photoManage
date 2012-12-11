@@ -4,8 +4,10 @@
     <title>{% block title %}Fun Photo Management Application{% endblock %}</title>
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet" media="screen">
-    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" media="screen">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,7 +19,7 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="{% url accounts.views.login_user %}">Photo Management</a>
-            <div class="nav-collapse collapse">
+            <div class="nav">
                 {% if user.is_authenticated %}
                 <p class="navbar-text pull-right">
                     Logged in as {{ user.username }}
@@ -28,16 +30,20 @@
                         <li class="active"><a href="{% url photos.views.index %}">Photo</a></li>
                         <li><a href="{% url accounts.views.logout_user %}">Sign Out</a></li>
                     {% else %}
-                        <li><a href="{% url accounts.views.register %}">Register</a></li>
-                        <li><a href="{% url accounts.views.login_user %}">Login</a></li>
+                        <li {% if register %} class="active"{% endif %}><a href="{% url accounts.views.register %}">Register</a></li>
+                        <li {% if login %} class="active"{% endif %}><a href="{% url accounts.views.login_user %}">Login</a></li>
                     {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
-{% block main_content %}
-{% endblock %}
 
+<div class="container">
+    {% block main_content %}
+    {% endblock %}
+</div> <!-- /container -->
+
+<script src="{{ STATIC_URL }}js/main.js"></script>
 </body>
 </html>
