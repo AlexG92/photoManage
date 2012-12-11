@@ -62,7 +62,10 @@ def index(request):
             form = AlbumForm(request.POST)
             if form.is_valid():
                 Album.objects.filter(pk = request.POST['albumTitleChangeID']).update(title = request.POST['title'])
-                return render_to_response('photos/index.html', {'photos': photos, "albums":albums,},context_instance=RequestContext(request))
+                ## What a crap way to do ownership check. Making an extra DB Query
+                album = Album.objects.get(pk = request.POST['albumTitleChangeID'])
+                if album.owner == request.user:
+                    return render_to_response('photos/index.html', {'photos': photos, "albums":albums,},context_instance=RequestContext(request))
             else:
                 error_message = "Please input a proper album name"
                 form = AlbumForm()
@@ -71,7 +74,10 @@ def index(request):
             form = ChangeFileName(request.POST)
             if form.is_valid():
                 Photo.objects.filter(pk = request.POST['photoTitleChangeID']).update(title = request.POST['title'])
-                return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
+                ## What a crap way to do ownership check. Making an extra DB Query
+                photo = Photo.objects.get(pk = request.POST['photoTitleChangeID'])
+                if photo.owner == request.user:
+                    return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
             else:
                 error_message = "Please input a proper title"
                 form = ChangeFileName()
