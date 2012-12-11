@@ -34,3 +34,6 @@ class UploadFileForm(forms.Form):
 
 class AlbumForm(forms.Form):
     title = forms.CharField(max_length=200)
+
+class ChangeFileName(forms.Form):
+    title = models.CharField(max_length=200)
