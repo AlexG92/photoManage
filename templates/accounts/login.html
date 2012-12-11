@@ -3,14 +3,15 @@
 {% block title %} Login Here {% endblock %}
 
 {% block main_content %}
-<br><br><br><br>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <form action="" method="post">
+
+    <form action="" method="post" class="form-signin">
         {% csrf_token %}
-        username <input type="text" name="username"><br>
-        password <input type="text" name="password"><br>
-        <input type="submit" value="submit">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {% if error_message %}<div href="#" class="alert alert-error">{{ error_message }} <a class="close" data-dismiss="alert" href="#">&times;</a></div>{% endif %}
+        <input type="text" class="input-block-level" placeholder="Username" name="username"><br>
+        <input type="password" class="input-block-level" placeholder="Password" name="password"><br>
+
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
     </form>
-    <a href="../register.html">Register</a>
 
 {% endblock %}
