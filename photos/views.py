@@ -18,7 +18,10 @@ from photos.models import *
 ##TODO RESTFUL API
 ##TODO EDIT PICTURE NAME
 ##TODO EDIT ALBUM NAME
+##TODO PHOTOS AND ALBUM SHOULD USE SAME TEMPLATE
+##TODO FILE DIRECTORY SHOULD CHANGE BASED ON PHOTOS AND ALBUM AND USER
 ##TODO ONLY OWNER CAN DELETE *******DONE********
+##TODO Download All Photos
 @login_required
 def index(request):
     photos = Photo.objects.filter(owner = request.user, album_id=None)
@@ -34,7 +37,7 @@ def index(request):
             else:
                 error_message = "Please upload JPGS, GIFS, or PNG format only"
                 form = UploadFileForm()
-                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message': error_message},context_instance=RequestContext(request))
+                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
         elif 'uploadAlbum' in request.POST:
             form = AlbumForm(request.POST)
             if form.is_valid():
@@ -43,7 +46,7 @@ def index(request):
             else:
                 error_message = "Please input a proper album name"
                 form = AlbumForm()
-                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message': error_message},context_instance=RequestContext(request))
+                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
         elif 'deleteAlbum' in request.POST:
             album = Album.objects.get(pk = request.POST['delete'])
             if album.owner == request.user:
@@ -55,6 +58,24 @@ def index(request):
                 os.remove(photo.photo.path)
                 photo.delete()
             return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
+        elif 'albumChangeName' in request.POST:
+            form = AlbumForm(request.POST)
+            if form.is_valid():
+                Album.objects.filter(pk = request.POST['albumTitleChangeID']).update(title = request.POST['title'])
+                return render_to_response('photos/index.html', {'photos': photos, "albums":albums,},context_instance=RequestContext(request))
+            else:
+                error_message = "Please input a proper album name"
+                form = AlbumForm()
+                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
+        elif 'photoChangeName' in request.POST:
+            form = ChangeFileName(request.POST)
+            if form.is_valid():
+                Photo.objects.filter(pk = request.POST['photoTitleChangeID']).update(title = request.POST['title'])
+                return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
+            else:
+                error_message = "Please input a proper title"
+                form = ChangeFileName()
+                return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
     else:
         form = UploadFileForm()
         formAlbum = AlbumForm()
