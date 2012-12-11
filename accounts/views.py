@@ -24,11 +24,13 @@ def register(request):
             else:
                 return render_to_response("accounts/register.html", {
                     'form': form,
+                    'register': True,
                     }, context_instance=RequestContext(request))
     else:
         form = UserCreateForm()
     return render_to_response("accounts/register.html", {
         'form': form,
+        'register': True,
     }, context_instance=RequestContext(request))
 
 def logout_user(request):
@@ -48,11 +50,15 @@ def login_user(request):
                 error_message = "Sorry, your account is not active"
                 return render_to_response("accounts/login.html",{
                     'error_message': error_message,
+                    'login':True,
                     }, context_instance=RequestContext(request))
         else:
             error_message = "Invalid Login"
             return render_to_response("accounts/login.html", {
                 'error_message': error_message,
+                'login':True,
             }, context_instance=RequestContext(request))
     else:
-        return render_to_response("accounts/login.html", context_instance=RequestContext(request))
+        return render_to_response("accounts/login.html", {
+          'login':True,
+        }, context_instance=RequestContext(request))
