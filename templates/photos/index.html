@@ -6,7 +6,7 @@
 
 <div class="row-fluid">
     <div class="span6 uploadFileContainer">
-        <form method="post" action="" enctype="multipart/form-data" class="form-horizontal">
+        <form method="post" action="photos/newphoto/" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
             <h2>Upload Photos:</h2>
             {% if error_message_photo %}<div href="#" class="alert alert-error">{{ error_message_photo }} <a class="close" data-dismiss="alert" href="#">&times;</a></div>{% endif %}
@@ -75,7 +75,7 @@
 
 <!-- Album Name Changing Modal -->
 <div id="albumModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="albumModelLabel" aria-hidden="true">
-    <form method="post" action="">
+    <form method="post" action="photos/changealbumname/">
         {% csrf_token %}
         <input type="hidden" name="albumTitleChangeID" id="albumTitleChangeID" value="">
         <div class="modal-header">
