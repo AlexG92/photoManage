@@ -1,5 +1,3 @@
-__author__ = 'Alex'
-
 from django.conf.urls import *
 from accounts.views import *
 
