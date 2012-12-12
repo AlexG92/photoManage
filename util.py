@@ -1,3 +1,4 @@
+from functools import wraps
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.conf import settings
 from django.conf.urls import url
