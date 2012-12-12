@@ -75,7 +75,7 @@
 
 <!-- Album Name Changing Modal -->
 <div id="albumModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="albumModelLabel" aria-hidden="true">
-    <form method="post" action="photos/changealbumname/">
+    <form method="post" action="changealbumname/">
         {% csrf_token %}
         <input type="hidden" name="albumTitleChangeID" id="albumTitleChangeID" value="">
         <div class="modal-header">
