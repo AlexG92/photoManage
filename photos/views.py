@@ -10,7 +10,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.views.decorators.http import require_POST
 from photos.models import *
+from photos.util import uri
+
 ##TODO DELETE PHOTOS FROM HARDRIVE NOT JUST DB *******DONE********
 ##TODO MULTIPLE UPLOADS *******DONE********
 ##TODO NICE FRONT END *******DONE********
@@ -61,11 +64,10 @@ def index(request):
         elif 'albumChangeName' in request.POST:
             form = AlbumForm(request.POST)
             if form.is_valid():
-                Album.objects.filter(pk = request.POST['albumTitleChangeID']).update(title = request.POST['title'])
-                ## What a crap way to do ownership check. Making an extra DB Query
-                album = Album.objects.get(pk = request.POST['albumTitleChangeID'])
-                if album.owner == request.user:
-                    return render_to_response('photos/index.html', {'photos': photos, "albums":albums,},context_instance=RequestContext(request))
+                album = Album.objects.get(pk = request.POST['albumTitleChangeID'], owner=request.user)
+                album.title = request.POST['title']
+                album.save()
+                return render_to_response('photos/index.html', {'photos': photos, "albums":albums,},context_instance=RequestContext(request))
             else:
                 error_message = "Please input a proper album name"
                 form = AlbumForm()
@@ -73,11 +75,10 @@ def index(request):
         elif 'photoChangeName' in request.POST:
             form = ChangeFileName(request.POST)
             if form.is_valid():
-                Photo.objects.filter(pk = request.POST['photoTitleChangeID']).update(title = request.POST['title'])
-                ## What a crap way to do ownership check. Making an extra DB Query
-                photo = Photo.objects.get(pk = request.POST['photoTitleChangeID'])
-                if photo.owner == request.user:
-                    return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
+                photo = Photo.objects.get(pk = request.POST['photoTitleChangeID'], owner = request.user)
+                photo.title = request.POST['title']
+                photo.save()
+                return render_to_response('photos/index.html', {'photos': photos, "albums":albums},context_instance=RequestContext(request))
             else:
                 error_message = "Please input a proper title"
                 form = ChangeFileName()
@@ -86,6 +87,82 @@ def index(request):
         form = UploadFileForm()
         formAlbum = AlbumForm()
         return render_to_response('photos/index.html', {'form': form,'formAlbum': formAlbum, 'photos': photos, "albums":albums},context_instance=RequestContext(request))
+
+#@uri('photos/newphoto/')
+@login_required
+@require_POST
+def newphoto(request):
+    form = UploadFileForm(request.POST, request.FILES)
+    if form.is_valid():
+        for file in request.FILES.getlist('file'):
+            Photo(owner = request.user, pub_date = timezone.now(), photo = file, title = file.name ).save()
+        return HttpResponseRedirect("/photos/")
+    else:
+        request.session['error_message_photo'] = "Please upload JPGS, GIFS, or PNG format only"
+        return HttpResponseRedirect("/photos/")
+        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
+
+#@uri('photos/changephotoname/')
+@login_required
+@require_POST
+def changephotoname(request):
+    form = ChangeFileName(request.POST)
+    if form.is_valid():
+        photo = Photo.objects.get(pk = request.POST['photoTitleChangeID'], owner = request.user)
+        photo.title = request.POST['title']
+        photo.save()
+        return HttpResponseRedirect("/photos/")
+    else:
+        request.session['error_message_photo']  = "Please input a proper title"
+        form = ChangeFileName()
+        return HttpResponseRedirect("/photos/")
+        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
+
+#@uri('photos/deletephoto/')
+@login_required
+@require_POST
+def deletephoto(request):
+    photo = Photo.objects.get(pk = request.POST['delete'], owner = request.user)
+    os.remove(photo.photo.path)
+    photo.delete()
+    return HttpResponseRedirect("/photos/")
+
+#@uri('photos/newalbum/')
+@login_required
+@require_POST
+def newalbum(request):
+    form = AlbumForm(request.POST)
+    if form.is_valid():
+        Album(owner = request.user, title = request.POST['title']).save()
+        return HttpResponseRedirect("/photos/")
+    else:
+        request.session['error_message_album']  = "Please input a proper album name"
+        form = AlbumForm()
+        return HttpResponseRedirect("/photos/")
+        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
+
+#@uri('photos/changealbumname/')
+@login_required
+@require_POST
+def changealbumname(request):
+    form = AlbumForm(request.POST)
+    if form.is_valid():
+        album = Album.objects.get(pk = request.POST['albumTitleChangeID'], owner=request.user)
+        album.title = request.POST['title']
+        album.save()
+        return HttpResponseRedirect("/photos/")
+    else:
+        request.session['error_message_album'] = "Please input a proper album name"
+        form = AlbumForm()
+        return HttpResponseRedirect("/photos/")
+        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
+
+#@uri('photos/deletealbum/')
+@login_required
+@require_POST
+def deletealbum(request):
+    Album.objects.get(pk = request.POST['delete'], owner = request.user).delete()
+    return HttpResponseRedirect("/photos/")
 
 @login_required
 def album(request, album_id):
