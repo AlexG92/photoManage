@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
 from photos.models import *
-from photos.util import uri
+from util import uri
 
 ##TODO DELETE PHOTOS FROM HARDRIVE NOT JUST DB *******DONE********
 ##TODO MULTIPLE UPLOADS *******DONE********
@@ -29,7 +29,6 @@ from photos.util import uri
 def index(request):
     photos = Photo.objects.filter(owner = request.user, album_id=None)
     albums = Album.objects.filter(owner = request.user)
-
     if request.method == 'POST':
         if 'uploadFile' in request.POST:
             form = UploadFileForm(request.POST, request.FILES)
@@ -86,7 +85,14 @@ def index(request):
     else:
         form = UploadFileForm()
         formAlbum = AlbumForm()
-        return render_to_response('photos/index.html', {'form': form,'formAlbum': formAlbum, 'photos': photos, "albums":albums},context_instance=RequestContext(request))
+        return render_to_response('photos/index.html',
+            {
+                'form': form,
+                'formAlbum': formAlbum,
+                'photos': photos,
+                'albums':albums,
+            },
+            context_instance=RequestContext(request))
 
 #@uri('photos/newphoto/')
 @login_required
