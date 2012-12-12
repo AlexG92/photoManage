@@ -13,15 +13,15 @@ from django.template import RequestContext
 from photos.models import *
 ##TODO DELETE PHOTOS FROM HARDRIVE NOT JUST DB *******DONE********
 ##TODO MULTIPLE UPLOADS *******DONE********
-##TODO NICE FRONT END
+##TODO NICE FRONT END *******DONE********
 ##TODO DRAG AND DROP
 ##TODO RESTFUL API
-##TODO EDIT PICTURE NAME
-##TODO EDIT ALBUM NAME
+##TODO EDIT PICTURE NAME *******DONE********
+##TODO EDIT ALBUM NAME *******DONE********
 ##TODO PHOTOS AND ALBUM SHOULD USE SAME TEMPLATE
 ##TODO FILE DIRECTORY SHOULD CHANGE BASED ON PHOTOS AND ALBUM AND USER
 ##TODO ONLY OWNER CAN DELETE *******DONE********
-##TODO Download All Photos
+##TODO Download All Photos via ZIP file
 @login_required
 def index(request):
     photos = Photo.objects.filter(owner = request.user, album_id=None)
