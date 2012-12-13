@@ -1,5 +1,5 @@
 from django.conf.urls import *
-from accounts.views import *
+from photoManage.accounts.views import *
 
 urlpatterns = patterns('',
     url(r'^login/$',  login_user),

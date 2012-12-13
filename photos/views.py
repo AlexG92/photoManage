@@ -11,8 +11,8 @@ from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
-from photos.models import *
-from util import uri
+from photoManage.photos.models import *
+from photoManage.util import uri
 
 ##TODO DELETE PHOTOS FROM HARDRIVE NOT JUST DB *******DONE********
 ##TODO MULTIPLE UPLOADS *******DONE********

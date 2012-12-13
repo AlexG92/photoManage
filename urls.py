@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
 )
 
-import photos.views
+import photoManage.photos.views
 
 if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
