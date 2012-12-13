@@ -4,12 +4,24 @@
 
 {% block main_content %}
 
+{% if messages %}
+    <div class="row-fluid">
+        <div class="alert alert-error clearfix">
+            <ul class="pull-left">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+        </div>
+    </div>
+{% endif %}
+
 <div class="row-fluid">
     <div class="span6 uploadFileContainer">
         <form method="post" action="newphoto/" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
             <h2>Upload Photos:</h2>
-            {% if error_message_photo %}<div href="#" class="alert alert-error">{{ error_message_photo }} <a class="close" data-dismiss="alert" href="#">&times;</a></div>{% endif %}
             <input type="file" multiple name="file">
             <button class="btn btn-primary" type="submit" name="uploadFile">Upload Photos</button>
         </form>
@@ -19,7 +31,6 @@
         <form method="post" action="newalbum/" class="form-horizontal">
             {% csrf_token %}
             <h2>Create Album</h2>
-            {% if error_message_album %}<div href="#" class="alert alert-error">{{ error_message_album }} <a class="close" data-dismiss="alert" href="#">&times;</a></div>{% endif %}
             <input type="text" name="title" placeholder="Album Name">
             <button class="btn btn-primary" type="submit" name="uploadAlbum">Create Album</button>
         </form>
