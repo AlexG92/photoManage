@@ -5,7 +5,7 @@ Web Photo Management Application that allows you to upload photos and manage the
 
 
 Functionality Complete
-===========
+--------
 
 * Responsive Design using Twitter Bootstrap
 * Improved Look and Feel
@@ -15,7 +15,7 @@ Functionality Complete
 * Photo assignment to Album
 
 Functionality Not Completed
-===========
+--------
 
 * Break Up The Large View
 * Drag and Drop of Photos to Albums for assignment
