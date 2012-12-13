@@ -7,6 +7,8 @@ Web Photo Management Application that allows you to upload photos and manage the
 Functionality Complete
 --------
 
+* Regsitration of New User
+* Login of User
 * Responsive Design using Twitter Bootstrap
 * Ability to upload multiple photos at once using HTML5 form field
 * CRUD Photo
@@ -21,6 +23,7 @@ Tasks Completed
 Tasks That Are Still Open
 --------
 
+* Forget Password Functionality
 * Site Wide Error Managment Using Flash Memory
 * Get accounts/views.py to use @uri
 * Drag and Drop of Photos to Albums for assignment
