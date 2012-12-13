@@ -2,7 +2,7 @@ from functools import wraps
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.conf import settings
 from django.conf.urls import url
-from urls import *
+from photoManage.urls import urlpatterns
 
 def uri(pattern, method='GET', enabled=True, cache={}):
 
