@@ -35,7 +35,7 @@ def register(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('accounts.views.login_user')
+    return redirect('accounts/login.html')
 
 def login_user(request):
     if request.method == 'POST':
@@ -45,7 +45,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('photos.views.index')
+                return redirect('/photos/')
             else:
                 error_message = "Sorry, your account is not active"
                 return render_to_response("accounts/login.html",{
