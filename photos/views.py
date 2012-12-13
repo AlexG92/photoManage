@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
 from photoManage.photos.models import *
+from django.contrib import messages
 from photoManage.util import uri
 from photoManage.util import render
 
@@ -59,9 +60,8 @@ def newphoto(request):
             Photo(owner = request.user, pub_date = timezone.now(), photo = file, title = file.name ).save()
         return HttpResponseRedirect("/photos/")
     else:
-        request.session['error_message_photo'] = "Please upload JPGS, GIFS, or PNG format only"
+        messages.error(request, 'Please upload JPGS, GIFS, or PNG format only.')
         return HttpResponseRedirect("/photos/")
-        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
 
 @uri('photos/changephotoname/', method='POST')
 @login_required
@@ -74,9 +74,8 @@ def changephotoname(request):
         photo.save()
         return HttpResponseRedirect("/photos/")
     else:
-        request.session['error_message_photo']  = "Please input a proper title"
+        messages.error(request, 'Please input a proper title')
         return HttpResponseRedirect("/photos/")
-        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
 
 @uri('photos/deletephoto/', method='POST')
 @login_required
@@ -96,10 +95,8 @@ def newalbum(request):
         Album(owner = request.user, title = request.POST['title']).save()
         return HttpResponseRedirect("/photos/")
     else:
-        request.session['error_message_album']  = "Please input a proper album name"
-        form = AlbumForm()
+        messages.error(request, 'Please input a proper title')
         return HttpResponseRedirect("/photos/")
-        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
 
 @uri('photos/changealbumname/', method='POST')
 @login_required
@@ -112,10 +109,8 @@ def changealbumname(request):
         album.save()
         return HttpResponseRedirect("/photos/")
     else:
-        request.session['error_message_album'] = "Please input a proper album name"
-        form = AlbumForm()
+        messages.error(request, 'Please input a proper title')
         return HttpResponseRedirect("/photos/")
-        #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
 
 @uri('photos/deletealbum/', method='POST')
 @login_required
