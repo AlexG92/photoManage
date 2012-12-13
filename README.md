@@ -26,3 +26,6 @@ Tasks That Are Still Open
 * RESTFUL API
 * File Directory Based On owner/album/photo
 * Download All Zip Files In a .Zip
+* Clean Up Album View in photos/views.py
+* Comments throughout the application
+* Documentation?
