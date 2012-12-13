@@ -22,6 +22,7 @@ Tasks That Are Still Open
 --------
 
 * Site Wide Error Managment Using Flash Memory
+* Get accounts/views.py to use @uri
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
 * File Directory Based On owner/album/photo
