@@ -28,6 +28,7 @@ Tasks That Are Still Open
 * Get accounts/views.py to use @uri
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
+* AJAXIFY everything, because I can.
 * File Directory Based On owner/album/photo
 * Download All Zip Files In a .Zip
 * Clean Up Album View in photos/views.py
