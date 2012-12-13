@@ -25,6 +25,7 @@ from util import uri
 ##TODO FILE DIRECTORY SHOULD CHANGE BASED ON PHOTOS AND ALBUM AND USER
 ##TODO ONLY OWNER CAN DELETE *******DONE********
 ##TODO Download All Photos via ZIP file
+@uri('photos/')
 @login_required
 def index(request):
     photos = Photo.objects.filter(owner = request.user, album_id=None)
@@ -94,7 +95,7 @@ def index(request):
             },
             context_instance=RequestContext(request))
 
-#@uri('photos/newphoto/')
+@uri('photos/newphoto/')
 @login_required
 @require_POST
 def newphoto(request):
@@ -108,7 +109,7 @@ def newphoto(request):
         return HttpResponseRedirect("/photos/")
         #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
 
-#@uri('photos/changephotoname/')
+@uri('photos/changephotoname/')
 @login_required
 @require_POST
 def changephotoname(request):
@@ -124,7 +125,7 @@ def changephotoname(request):
         return HttpResponseRedirect("/photos/")
         #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_photo': error_message},context_instance=RequestContext(request))
 
-#@uri('photos/deletephoto/')
+@uri('photos/deletephoto/')
 @login_required
 @require_POST
 def deletephoto(request):
@@ -133,7 +134,7 @@ def deletephoto(request):
     photo.delete()
     return HttpResponseRedirect("/photos/")
 
-#@uri('photos/newalbum/')
+@uri('photos/newalbum/')
 @login_required
 @require_POST
 def newalbum(request):
@@ -147,7 +148,7 @@ def newalbum(request):
         return HttpResponseRedirect("/photos/")
         #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
 
-#@uri('photos/changealbumname/')
+@uri('photos/changealbumname/')
 @login_required
 @require_POST
 def changealbumname(request):
@@ -163,13 +164,14 @@ def changealbumname(request):
         return HttpResponseRedirect("/photos/")
         #return render_to_response('photos/index.html', {'form': form, 'photos': photos, "albums":albums, 'error_message_album': error_message},context_instance=RequestContext(request))
 
-#@uri('photos/deletealbum/')
+@uri('photos/deletealbum/')
 @login_required
 @require_POST
 def deletealbum(request):
     Album.objects.get(pk = request.POST['delete'], owner = request.user).delete()
     return HttpResponseRedirect("/photos/")
 
+@uri('album/(?P<album_id>\d+)/')
 @login_required
 def album(request, album_id):
     albumSelected = get_object_or_404(Album, pk=album_id)

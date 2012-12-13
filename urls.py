@@ -11,11 +11,12 @@ urlpatterns = patterns('',
    # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
    # url(r'^$', 'views.index'),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^photos/', include('photos.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
 )
+
+import photos.views
 
 if settings.DEBUG:
     urlpatterns += patterns('django.views.static',
