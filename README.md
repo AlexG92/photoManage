@@ -8,16 +8,19 @@ Functionality Complete
 --------
 
 * Responsive Design using Twitter Bootstrap
-* Improved Look and Feel
 * Ability to upload multiple photos at once using HTML5 form field
 * CRUD Photo
 * CRUD Album
 * Photo assignment to Album
 
-Functionality Not Completed
+Tasks Completed
+--------
+* Break Up The Large View in photos/views.py
+* Improved Look and Feel
+
+Tasks That Are Still Open
 --------
 
-* Break Up The Large View
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
 * File Directory Based On owner/album/photo
