@@ -27,8 +27,8 @@
                 {% endif %}
                 <ul class="nav">
                     {% if user.is_authenticated %}
-                        <li class="active"><a href="{% url photos.views.index %}">Photo</a></li>
-                        <li><a href="{% url accounts.views.logout_user %}">Sign Out</a></li>
+                        <li class="active"><a href="/photos/">Photo</a></li>
+                        <li><a href="../logout/">Sign Out</a></li>
                     {% else %}
                         <li {% if register %} class="active"{% endif %}><a href="{% url accounts.views.register %}">Register</a></li>
                         <li {% if login %} class="active"{% endif %}><a href="{% url accounts.views.login_user %}">Login</a></li>
