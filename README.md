@@ -19,12 +19,12 @@ Tasks Completed
 --------
 * Break Up The Large View in photos/views.py
 * Improved Look and Feel
+* Site Wide Error Managment Using Flash Memory
 
 Tasks That Are Still Open
 --------
 
 * Forget Password Functionality
-* Site Wide Error Managment Using Flash Memory
 * Get accounts/views.py to use @uri
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
