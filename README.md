@@ -21,13 +21,13 @@ Tasks Completed
 * Improved Look and Feel
 * Site Wide Error Managment Using Flash Memory
 * Clean Up Album View in photos/views.py
+* Get accounts/views.py to use @uri
+* Clean up accounts/views 
 
 Tasks That Are Still Open
 --------
 
 * Forget Password Functionality
-* Get accounts/views.py to use @uri
-* Clean up accounts/views
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
 * AJAXIFY everything, because I can.
