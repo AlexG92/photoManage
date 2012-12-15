@@ -3,45 +3,117 @@
 {% block title %} Album Page {% endblock %}
 
 {% block main_content %}
-<br><br><br><br>
 
-Welcome {{ user.username }} | <a href="/photos/">Home</a> | <a href="../accounts/logout/">Log Out</a><br><br>
+    {% if messages %}
+        <div class="row-fluid">
+            <div class="alert alert-error clearfix">
+                <ul class="pull-left">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+            </div>
+        </div>
+    {% endif %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="row-fluid">
+        <div class="span12 uploadFileContainer">
+            <form method="post" action="/photos/newphoto/" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <h2>Upload Photos:</h2>
+                <input type="file" multiple name="file">
+                <button class="btn btn-primary" type="submit" name="uploadFile">Upload Photos</button>
+                <input type="hidden" name="albumid" value="{{ album.id }}">
+            </form>
+        </div>
+    </div>
 
-<b>Create Photos:</b>
-<form method="post" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" multiple name="file">
-    <input type="submit" name="uploadFile">
-</form>
+    <!-- PHOTO DISPLAY IN ALBUM -->
+    <div class="row-fluid marginTop20">
+        <div class="span9 photoContainer">
+            <form action="/photos/deletephoto/" method="post">
+                <h4>{{ album.title }} Photos:</h4>
+                {% csrf_token %}
+                <input type="hidden" name="deletePhoto">
+                <ul class="thumbnails">
+                    {% for photo in albumPhotos %}
+                        <li class="span3">
+                            <a href="#" class="thumbnail span12">
+                                <img src="{{ MEDIA_URL }}{{ photo.photo }}">
+                                <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
+                                <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailDelete" name="delete">Delete</button>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
 
-<br><br>
+        <!-- Non Associated Photos DISPLAY -->
+        <div class="span3 sidebar-nav albumContainer">
+            <h4>Unassociated Photos:</h4>
+            <input type="hidden" name="deleteAlbum">
+            <ul class="thumbnails">
+                {% for photo in photos %}
+                    <li class="span12">
+                        <a href="album/{{ album.id }}" class="thumbnail albumList span12">
+                            <img src="{{ MEDIA_URL }}{{ photo.photo }}">
+                            <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
+                            <form action="/photos/deletephoto/" method="post">
+                                <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailDelete" name="delete">Delete</button>
+                                {% csrf_token %}
+                            </form>
+                            <form action="/photos/assignphototoalbum/" method="post">
+                                <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailAddToAlbum" name="addToAlbum">Add To Album</button>
+                                <input type="hidden" name="albumid" value="{{ album.id }}">
+                            {% csrf_token %}
+                            </form>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-<b>Album Photos:</b>
-<br><br>
-<form action="" method="post">
-    {% csrf_token %}
-{% for photo in albumPhotos %}
-    {{ photo.title }} <br>
-    <img src="{{ MEDIA_URL }}{{ photo.photo }}"><br>
-    <button type="submit" value="{{ photo.id }}" name="delete">Delete</button>
-{% endfor %}
-</form>
+    </div>
 
-<br><br>
+    <!-- Album Name Changing Modal -->
+    <div id="albumModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="albumModelLabel" aria-hidden="true">
+        <form method="post" action="/photos/changealbumname/">
+            {% csrf_token %}
+            <input type="hidden" name="albumTitleChangeID" id="albumTitleChangeID" value="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="albumModelLabel">Change Album Name</h3>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="title" placeholder="New Album Name">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" name="albumChangeName">Save changes</button>
+            </div>
+        </form>
+    </div>
 
-<b>Photos:</b>
-<br><br>
-<form action="" method="post">
-    {% csrf_token %}
-{% for photo in photos %}
-    {{ photo.title }} <br>
-    <img src="{{ MEDIA_URL }}{{ photo.photo }}"><br>
-    <button type="submit" value="{{ photo.id }}" name="delete">Delete</button>
-    <button type="submit" value="{{ photo.id }}" name="addAlbum">Add to Album</button>
-    <br><br>
-{% endfor %}
-</form>
+    <!-- Photo Name Changing Modal -->
+    <div id="photoModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <form method="post" action="/photos/changephotoname/">
+            {% csrf_token %}
+            <input type="hidden" name="photoTitleChangeID" id="photoTitleChangeID" value="">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Change Photo Name</h3>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="title" placeholder="New Photo Name">
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" name="photoChangeName">Save changes</button>
+            </div>
+        </form>
+    </div>
+
 
 {% endblock %}
