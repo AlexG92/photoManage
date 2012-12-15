@@ -93,6 +93,9 @@
   .hidden-phone {
     display: none !important;
   }
+  [class*="span"] {
+    margin-bottom: 15px;
+  }
 }
 
 @media (min-width: 1200px) {
