@@ -5,6 +5,7 @@ from django.db.models.fields.files import ImageField
 from django.contrib.auth.models import User
 from django import forms
 import os.path
+from photoManage.photos.photofilesystem import upload_photo_file_path
 
 # Create your models here.
 class Album(models.Model):
@@ -26,7 +27,7 @@ class Photo(models.Model):
     owner = models.ForeignKey(User)
     album = models.ForeignKey(Album, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='photographs')
+    photo = models.ImageField(upload_to=upload_photo_file_path)
     pub_date = models.DateTimeField('date published')
 
 class UploadFileForm(forms.Form):
