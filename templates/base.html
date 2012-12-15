@@ -18,7 +18,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="{% url accounts.views.login_user %}">Photo Management</a>
+            <a class="brand" href="/photos/">Photo Management</a>
             <div class="nav">
                 {% if user.is_authenticated %}
                 <p class="navbar-text pull-right">
@@ -28,10 +28,10 @@
                 <ul class="nav">
                     {% if user.is_authenticated %}
                         <li class="active"><a href="/photos/">Photo</a></li>
-                        <li><a href="../logout/">Sign Out</a></li>
+                        <li><a href="/accounts/logout/">Sign Out</a></li>
                     {% else %}
-                        <li {% if register %} class="active"{% endif %}><a href="{% url accounts.views.register %}">Register</a></li>
-                        <li {% if login %} class="active"{% endif %}><a href="{% url accounts.views.login_user %}">Login</a></li>
+                        <li {% if register %} class="active"{% endif %}><a href="/accounts/register/">Register</a></li>
+                        <li {% if login %} class="active"{% endif %}><a href="/accounts/login/">Login</a></li>
                     {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
