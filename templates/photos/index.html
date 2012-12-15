@@ -37,11 +37,8 @@
     </div>
 </div>
 
-<br><br>
-
-
-<div class="row-fluid">
-
+    <!-- PHOTO DISPLAY -->
+<div class="row-fluid marginTop20">
     <div class="span9 photoContainer">
         <form action="deletephoto/" method="post">
             <h4>Photos:</h4>
@@ -50,7 +47,7 @@
             <ul class="thumbnails">
             {% for photo in photos %}
                 <li class="span3">
-                    <a href="#" class="thumbnail">
+                    <a href="#" class="thumbnail span12">
                         <img src="{{ MEDIA_URL }}{{ photo.photo }}">
                         <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
                         <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailDelete" name="delete">Delete</button>
@@ -61,6 +58,7 @@
         </form>
     </div>
 
+<!-- ALBUM DISPLAY -->
     <div class="span3 sidebar-nav albumContainer">
         <form action="deletealbum/" method="post">
             <h4>Albums:</h4>
@@ -69,7 +67,7 @@
             <ul class="thumbnails">
             {% for album in albums %}
                 <li class="span12">
-                    <a href="album/{{ album.id }}" class="thumbnail albumList">
+                    <a href="album/{{ album.id }}" class="thumbnail albumList span12 {% if not album.lastImage %}height100{% endif %}">
                         {% if album.lastImage %}
                             <img src="{{ MEDIA_URL }}{{ album.lastImage.photo }}">
                         {% endif %}
