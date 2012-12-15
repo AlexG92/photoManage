@@ -53,28 +53,37 @@ body {
 }
 
 .thumbnailDelete,
-.albumListDelete {
+.albumListDelete,
+.thumbnailAddToAlbum {
     display:none;
 }
 
 .thumbnail:hover .thumbnailDelete,
-.albumList:hover .albumListDelete {
+.albumList:hover .albumListDelete,
+.albumList:hover .thumbnailAddToAlbum {
     display:block;
     position:absolute;
-    top:33%;
+    top:30%;
     right:0;
     opacity:0.8;
 }
 
+.albumList:hover .thumbnailAddToAlbum {
+    left: 0;
+    right:auto;
+}
+
 .albumTitle,
 .photoTitle {
-    position:absolute:
-    bottom:0;
+    width:100%;
     background:#fff;
     color:#000;
     margin:0;
     padding:0;
     text-align:center;
+    position:absolute;
+    bottom:0;
+    opacity:0.5;
 }
 
 .albumContainer ul {
@@ -90,4 +99,12 @@ body {
     margin:0;
     font-weight:bold;
     list-style-type:none;
+}
+
+.marginTop20 {
+    margin-top:20px;
+}
+
+.height100 {
+    height:100px;
 }
