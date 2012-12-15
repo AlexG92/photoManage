@@ -7,7 +7,20 @@
     <form action="" method="post" class="form-signin">
         {% csrf_token %}
         <h2 class="form-signin-heading">Please sign in</h2>
-        {% if error_message %}<div href="#" class="alert alert-error">{{ error_message }} <a class="close" data-dismiss="alert" href="#">&times;</a></div>{% endif %}
+
+        {% if messages %}
+            <div class="row-fluid">
+                <div class="alert alert-error clearfix">
+                    <ul class="pull-left">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a class="close" data-dismiss="alert" href="#">&times;</a>
+                </div>
+            </div>
+        {% endif %}
+
         <input type="text" class="input-block-level" placeholder="Username" name="username"><br>
         <input type="password" class="input-block-level" placeholder="Password" name="password"><br>
 
