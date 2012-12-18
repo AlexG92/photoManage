@@ -13,7 +13,7 @@ from photoManage.photos.models import *
 from django.contrib import messages
 from photoManage.util import uri
 from photoManage.util import render
-from photoManage.photos.photofilesystem import get_directory
+from photoManage.photos.photofilesystem import get_directory, change_directory
 import shutil
 
 @uri('photos/')
@@ -120,7 +120,6 @@ def newalbum(request):
         messages.error(request, 'Please input a proper title')
         return HttpResponseRedirect(requestOrigin)
 
-##TODO CHANGE ALBUM NAME NOT MOVING FILE DIRECTORY
 @uri('photos/changealbumname/', method='POST')
 @login_required
 @require_POST
@@ -132,11 +131,9 @@ def changealbumname(request):
             album = Album.objects.get(pk = request.POST['albumTitleChangeID'], owner=request.user)
             currentAlbumTitle = album.title
             album.title = request.POST['title']
-            source = get_directory(request.user, None, currentAlbumTitle)
-            destination = get_directory(request.user, None, album.title)
-            print source
-            print destination
-            os.rename(source, destination)
+            source = get_directory(request.user, None, currentAlbumTitle, False)
+            destination = get_directory(request.user, None, album.title, False)
+            change_directory(source,destination)
             photos = Photo.objects.filter(album = album, owner = request.user)
             for photo in photos:
                 filename = photo.filename()
@@ -145,7 +142,7 @@ def changealbumname(request):
             album.save()
             return HttpResponseRedirect(requestOrigin)
         except Exception as e:
-            messages.error(request, '%s (%s)' % (e.message, type(e)))
+            messages.error(request, '%s' % e.message)
             return HttpResponseRedirect(requestOrigin)
     else:
         messages.error(request, 'Please input a proper title')
