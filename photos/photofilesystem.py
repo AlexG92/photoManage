@@ -1,5 +1,9 @@
 import os
+import shutil
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
+### get_directory is possibly creating a new path, should I be doing this in another function?
 
 def upload_photo_file_path(instance, filename):
     if instance.album is None:
@@ -7,32 +11,26 @@ def upload_photo_file_path(instance, filename):
     else:
         return os.path.join('photographs/', '%s' % instance.owner, '%s' % instance.album, filename)
 
-#### IS THERE A BETTER WAY TO DO THIS? ####
-def get_directory(owner, filename=None, album=None):
+def get_directory(owner, filename=None, album=None, createDir=True):
     absolutePath = os.path.realpath('')
     if filename is None:
         filename = ''
     if album is None:
         album = ''
     directory = os.path.join('%s' % absolutePath, 'media\photographs\\', '%s' % owner, '%s' % album)
-    if not os.path.exists(directory):
+    if not os.path.exists(directory) and createDir == True:
         os.makedirs(directory)
     return os.path.join('%s' % directory, '%s' % filename)
 
-def delete_directory(request, album):
-    absolutePath = os.path.realpath('')
-    directory = os.path.join('%s' % absolutePath, 'media\photographs\\', '%s' % owner, '%s' % album)
-    try:
-        os.remove(directory)
-    except Exception as e:
-        messages.error(request, '%s (%s)' % (e.message, type(e)))
+def change_directory(source, destination):
+    if os.path.exists(destination):
+        raise Exception('Album with that name exists, please pick a unique album name')
+    else:
+        os.rename(source, destination)
 
-def change_directory():
-    source = get_directory('alex4', None, 'Taest')
-    destination = get_directory('alex4', None, 'Test12')
-    print source
-    print destination
-    os.renames(source, destination)
+
+def test_character_insert():
+    source = get_directory('alex4', None, 'test12')
 
 
 #from photos.photofilesystem import *
