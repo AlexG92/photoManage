@@ -36,3 +36,8 @@ Tasks That Are Still Open
 * AJAXIFY everything, because I can.
 * Comments throughout the application
 * Documentation?
+
+Bugs
+--------
+
+*Moving a photo into an album that has the same photo name
