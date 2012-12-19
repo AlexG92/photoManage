@@ -28,6 +28,7 @@ class Photo(models.Model):
     album = models.ForeignKey(Album, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     photo = models.ImageField(upload_to=upload_photo_file_path)
+    thumb = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
 class UploadFileForm(forms.Form):
