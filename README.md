@@ -29,6 +29,7 @@ Tasks Completed
 Tasks That Are Still Open
 --------
 
+* Thumbnail Creation
 * Forget Password Functionality
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
