@@ -1,6 +1,5 @@
 import os
 
-
 ### get_directory is possibly creating a new path, should I be doing this in another function?
 
 def upload_photo_file_path(instance, filename):
