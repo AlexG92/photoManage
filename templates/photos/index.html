@@ -51,9 +51,9 @@
             <input type="hidden" name="deletePhoto">
             <ul class="thumbnails">
             {% for photo in photos %}
-                <li class="span4">
+                <li class="span2">
                     <a href="#" class="thumbnail span12">
-                        <img src="{{ MEDIA_URL }}{{ photo.photo }}">
+                        <img src="{{ MEDIA_URL }}{{ photo.thumb }}">
                         <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
                         <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailDelete" name="delete">Delete</button>
                     </a>
