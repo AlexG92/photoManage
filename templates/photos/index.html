@@ -40,6 +40,9 @@
     <!-- PHOTO DISPLAY -->
 <div class="row-fluid marginTop20">
     <div class="span9 photoContainer">
+        <div class="pull-right">
+            <a href="download/" class="btn btn-success">Download Photos</a>
+        </div>
         <form action="deletephoto/" method="post">
             <h4>Photos:</h4>
             {% csrf_token %}
