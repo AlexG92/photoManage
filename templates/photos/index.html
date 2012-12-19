@@ -52,7 +52,7 @@
             <ul class="thumbnails">
             {% for photo in photos %}
                 <li class="span2">
-                    <a href="#" class="thumbnail span12">
+                    <a href="#" class="thumbnail span12 draggable">
                         <img src="{{ MEDIA_URL }}{{ photo.thumb }}">
                         <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
                         <button type="submit" value="{{ photo.id }}" class="btn btn-danger btn-mini thumbnailDelete" name="delete">Delete</button>
@@ -71,7 +71,7 @@
             <input type="hidden" name="deleteAlbum">
             <ul class="thumbnails">
             {% for album in albums %}
-                <li class="span12">
+                <li class="span12 droppable">
                     <a href="album/{{ album.id }}" class="thumbnail albumList span12 {% if not album.lastImage %}height100{% endif %}">
                         {% if album.lastImage %}
                             <img src="{{ MEDIA_URL }}{{ album.lastImage.photo }}">
@@ -86,6 +86,14 @@
     </div>
 
 </div>
+
+<!-- DRAG AND DROP ASSIGN PHOTO -->
+<form action="/photos/assignphototoalbum/" id="assignPhotoToAlbum" method="post">
+    <input type="hidden" name="addToAlbum" id="photoID" value="">
+    <input type="hidden" name="albumid" id="albumID" value="">
+    <input type="submit" name="add" value="">
+    {% csrf_token %}
+</form>
 
 <!-- Album Name Changing Modal -->
 <div id="albumModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="albumModelLabel" aria-hidden="true">
