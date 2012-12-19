@@ -1,7 +1,6 @@
 import os
-import shutil
-from django.contrib import messages
-from django.http import HttpResponseRedirect
+from zipfile import *
+
 
 ### get_directory is possibly creating a new path, should I be doing this in another function?
 
@@ -28,10 +27,7 @@ def change_directory(source, destination):
     else:
         os.rename(source, destination)
 
-
-def test_character_insert():
-    source = get_directory('alex4', None, 'test12')
-
-
+    #ZipFile.write('G:\\_work\\photoManage\\media\\photographs\\alex4\\disk_yellow_3.png')
 #from photos.photofilesystem import *
+#create_zipfile('media\\photographs\\alex4')
 #get_directory('alex','great photo', 'alaska')
