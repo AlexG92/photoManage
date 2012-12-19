@@ -40,16 +40,18 @@
     <!-- PHOTO DISPLAY -->
 <div class="row-fluid marginTop20">
     <div class="span9 photoContainer">
-        <div class="pull-right">
-            <a href="download/" class="btn btn-success">Download Photos</a>
-        </div>
+        {% if photos %}
+            <div class="pull-right">
+                <a href="download/" class="btn btn-success">Download Photos</a>
+            </div>
+        {% endif %}
         <form action="deletephoto/" method="post">
             <h4>Photos:</h4>
             {% csrf_token %}
             <input type="hidden" name="deletePhoto">
             <ul class="thumbnails">
             {% for photo in photos %}
-                <li class="span3">
+                <li class="span4">
                     <a href="#" class="thumbnail span12">
                         <img src="{{ MEDIA_URL }}{{ photo.photo }}">
                         <div class="photoTitle" data-toggle="modal" data-target="#photoModel" id="{{ photo.id }}">{{ photo.title }}</div>
