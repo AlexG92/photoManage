@@ -1,5 +1,4 @@
 import os
-from zipfile import *
 
 
 ### get_directory is possibly creating a new path, should I be doing this in another function?
@@ -27,7 +26,6 @@ def change_directory(source, destination):
     else:
         os.rename(source, destination)
 
-    #ZipFile.write('G:\\_work\\photoManage\\media\\photographs\\alex4\\disk_yellow_3.png')
+
 #from photos.photofilesystem import *
-#create_zipfile('media\\photographs\\alex4')
 #get_directory('alex','great photo', 'alaska')
