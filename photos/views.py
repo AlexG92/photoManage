@@ -15,8 +15,8 @@ from zipfile import ZipFile
 from django.http import HttpResponse
 from photoManage.photos.models import *
 from django.contrib import messages
-from photoManage.util import uri
-from photoManage.util import render
+from photoManage.util import uri, render_to_json
+from photoManage.photos.thumbnail import create_thumb
 from photoManage.photos.photofilesystem import get_directory, change_directory
 import shutil
 
@@ -81,6 +81,7 @@ def newphoto(request):
         albumSelected = request.POST.get('albumid', None)
         for file in request.FILES.getlist('file'):
             Photo(owner = request.user, pub_date = timezone.now(), photo = file, title = file.name, album_id = albumSelected ).save()
+            #create_thumb(request.user, str(file), album=None)
         return HttpResponseRedirect(requestOrigin)
     else:
         messages.error(request, 'Please upload JPGS, GIFS, or PNG format only.')
