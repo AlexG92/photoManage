@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
 from StringIO import StringIO
+import zipfile
 from zipfile import ZipFile
 from django.http import HttpResponse
 from photoManage.photos.models import *
@@ -194,7 +195,7 @@ def assignphototoalbum(request):
 def download_zip(request):
     path = os.path.join('media\photographs\\', '%s' % request.user)
     in_memory = StringIO()
-    zip = ZipFile(in_memory, 'a')
+    zip = ZipFile(in_memory, 'a', zipfile.ZIP_DEFLATED)
     for root, dirs, files in os.walk(path):
         for file in files:
             zip.write(os.path.join(root, file))
