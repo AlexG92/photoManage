@@ -18,4 +18,19 @@ $('.photoTitle').click(function(){
 })
 
 
+$(function() {
+    $( ".draggable" ).draggable();
+    $( ".droppable" ).droppable({
+        drop: function( event, ui ) {
+            // Not the fastest commands
+            albumID = $(this).find('.albumTitle').attr('id');
+            photoID = ui.draggable.find('.photoTitle').attr('id');
+
+            $('#photoID').attr('value',photoID);
+            $('#albumID').attr('value',albumID);
+            $('#assignPhotoToAlbum').submit()
+        }
+    });
+});
+
 });
