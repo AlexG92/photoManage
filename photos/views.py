@@ -80,8 +80,11 @@ def newphoto(request):
     if form.is_valid():
         albumSelected = request.POST.get('albumid', None)
         for file in request.FILES.getlist('file'):
-            Photo(owner = request.user, pub_date = timezone.now(), photo = file, title = file.name, album_id = albumSelected ).save()
-            #create_thumb(request.user, str(file), album=None)
+            photo = Photo(owner = request.user, pub_date = timezone.now(), photo = file, title = file.name, album_id = albumSelected)
+            photo.save()
+            thumbLocation = create_thumb(request.user, str(file), album=None)
+            photo.thumb = thumbLocation
+            photo.save()
         return HttpResponseRedirect(requestOrigin)
     else:
         messages.error(request, 'Please upload JPGS, GIFS, or PNG format only.')
