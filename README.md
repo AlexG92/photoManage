@@ -26,12 +26,12 @@ Tasks Completed
 * File Directory Based On owner/album/photo
 * Download All Photos In a .Zip 
 * Thumbnail Creation [Not Using]
+* Drag and Drop of Photos to Albums for assignment
 
 Tasks That Are Still Open
 --------
 
 * Forget Password Functionality
-* Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
 * AJAXIFY everything, because I can.
 * Comments throughout the application
