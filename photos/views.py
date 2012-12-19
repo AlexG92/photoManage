@@ -9,6 +9,9 @@ from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.views.decorators.http import require_POST
+from StringIO import StringIO
+from zipfile import ZipFile
+from django.http import HttpResponse
 from photoManage.photos.models import *
 from django.contrib import messages
 from photoManage.util import uri
@@ -185,3 +188,20 @@ def assignphototoalbum(request):
     photo.save()
     requestOrigin = request.META['HTTP_REFERER']
     return HttpResponseRedirect(requestOrigin)
+
+@uri('photos/download/')
+@login_required
+def download_zip(request):
+    path = os.path.join('media\photographs\\', '%s' % request.user)
+    in_memory = StringIO()
+    zip = ZipFile(in_memory, 'a')
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            zip.write(os.path.join(root, file))
+    zip.close()
+    response = HttpResponse(mimetype="application/zip")
+    response["Content-Disposition"] = "attachment; filename=photos.zip"
+
+    in_memory.seek(0)
+    response.write(in_memory.read())
+    return response
