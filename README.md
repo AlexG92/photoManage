@@ -25,11 +25,11 @@ Tasks Completed
 * Clean up accounts/views 
 * File Directory Based On owner/album/photo
 * Download All Photos In a .Zip 
+* Thumbnail Creation [Not Using]
 
 Tasks That Are Still Open
 --------
 
-* Thumbnail Creation
 * Forget Password Functionality
 * Drag and Drop of Photos to Albums for assignment
 * RESTFUL API
