@@ -110,6 +110,9 @@ def changephotoname(request):
 @require_POST
 def deletephoto(request):
     photo = Photo.objects.get(pk = request.POST['delete'], owner = request.user)
+    absolutePath = os.path.realpath('')
+    thumbPath = os.path.join('%s' % absolutePath, 'media\\', '%s' % photo.thumb)
+    os.remove(thumbPath)
     os.remove(photo.photo.path)
     photo.delete()
     requestOrigin = request.META['HTTP_REFERER']
