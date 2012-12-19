@@ -5,6 +5,8 @@ from django.conf.urls import url
 from photoManage.urls import urlpatterns
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils import simplejson
+
 
 def uri(pattern, method='GET', enabled=True, cache={}):
 
@@ -53,3 +55,26 @@ def render(template):
         return view
 
     return wrapper
+
+def render_to_json(method):
+    '''Renders a view to a serialized json object'''
+
+    @wraps(method)
+    def view(request, *args, **kwargs):
+        request.csrf = csrf(request)
+        context = method(request, *args, **kwargs)
+        if isinstance(context, HttpResponse):
+            return context
+        return HttpResponse(simplejson.dumps(context or {}))
+
+    return view
+
+
+def json_request(method):
+    '''Deserializes json request, sets object to request.JSON'''
+
+    @wraps(method)
+    def view(request, *args, **kwargs):
+        request.JSON = simplejson.loads(request.body or '{}')
+        return method(request, *args, **kwargs)
+    return view
