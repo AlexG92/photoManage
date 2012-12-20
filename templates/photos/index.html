@@ -47,6 +47,7 @@
         {% endif %}
         <form action="deletephoto/" method="post">
             <h4>Photos:</h4>
+            <p class="muted">Drag and Drop Photos to Albums</p>
             {% csrf_token %}
             <input type="hidden" name="deletePhoto">
             <ul class="thumbnails">
@@ -91,7 +92,7 @@
 <form action="/photos/assignphototoalbum/" id="assignPhotoToAlbum" method="post">
     <input type="hidden" name="addToAlbum" id="photoID" value="">
     <input type="hidden" name="albumid" id="albumID" value="">
-    <input type="submit" name="add" value="">
+    <input type="submit" name="add" value="" class="displayNone">
     {% csrf_token %}
 </form>
 
