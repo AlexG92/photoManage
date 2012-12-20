@@ -40,4 +40,5 @@ Tasks That Are Still Open
 Bugs
 --------
 
-*Moving a photo into an album that has the same photo name
+* Moving a photo into an album that has the same photo name
+* Doesn't support more than 4gb zip files, because of Python support of zip.
